@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小朋友的英文字母学习游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>小朋友的英文字母学习游戏</h1>
+            <div class="stats">
+                <span>得分: <span id="score">0</span></span>
+                <span>进度: <span id="progress">0</span>/26 个字母</span>
+            </div>
+        </header>
+
+        <main id="game-container">
+            <!-- 字母展示页面 -->
+            <div id="presentation-stage" class="stage active">
+                <div class="letter-display">
+                    <pre id="big-letter"></pre>
+                    <h2>今天学习的字母是：<span id="current-letter">A</span></h2>
+                    <p>让我们一起大声读出来："A"</p>
+                </div>
+                <button id="next-btn" class="btn-primary">进入小测验</button>
+            </div>
+
+            <!-- 测验页面 -->
+            <div id="quiz-stage" class="stage">
+                <h2>找出字母 '<span id="quiz-letter">A</span>'</h2>
+                <div class="options-container" id="options-container">
+                    <!-- 选项将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <!-- 结果反馈页面 -->
+            <div id="result-stage" class="stage">
+                <div id="feedback-message"></div>
+                <div id="feedback-letter"></div>
+                <button id="continue-btn" class="btn-primary">继续下一个字母</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
