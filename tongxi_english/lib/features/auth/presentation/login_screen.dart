@@ -71,37 +71,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 // App title
                 Text(
                   AppStrings.appNameChinese,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryPurple,
                   ),
                 )
                     .animate()
-                    .fadeIn(duration: const Duration(milliseconds: 600))
+                    .fadeIn(duration: Duration(milliseconds: 600))
                     .slideY(begin: -0.2, end: 0),
-                
+
                 Text(
                   AppStrings.appTagline,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                     color: AppColors.textSecondary,
                   ),
                 )
                     .animate()
-                    .fadeIn(delay: const Duration(milliseconds: 200), duration: const Duration(milliseconds: 600)),
+                    .fadeIn(delay: Duration(milliseconds: 200), duration: Duration(milliseconds: 600)),
                 
                 const SizedBox(height: AppSizes.paddingXl),
                 
                 // Mascot
-                const MascotWidget(
+                MascotWidget(
                   expression: MascotExpression.happy,
                   size: 140,
                   speechText: '欢迎回来！继续学习吧~',
-                )
-                    .animate()
-                    .fadeIn(delay: const Duration(milliseconds: 300), duration: const Duration(milliseconds: 600))
-                    .scale(begin: const Offset(0.8, 0.8)),
+                ),
                 
                 const SizedBox(height: AppSizes.paddingXxl),
                 
@@ -110,10 +107,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   InlineErrorMessage(
                     message: authState.failure!.message,
                     onRetry: () => ref.read(authControllerProvider.notifier).clearError(),
-                  )
-                      .animate()
-                      .fadeIn()
-                      .slideX(),
+                  ),
                 
                 if (authState.failure != null) const SizedBox(height: 16),
                 

@@ -137,14 +137,11 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 child: Row(
                   children: [
-                    const MascotWidget(
+                    MascotWidget(
                       expression: MascotExpression.happy,
                       size: 100,
                       speechText: '今天也要加油学习哦！',
-                    )
-                        .animate()
-                        .fadeIn(duration: const Duration(milliseconds: 500))
-                        .scale(begin: const Offset(0.8, 0.8)),
+                    ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(
@@ -309,10 +306,7 @@ class HomeScreen extends ConsumerWidget {
                     progress: 20,
                     onTap: () => context.goToTranslation(),
                   ),
-                ])
-                  ..animate(interval: const Duration(milliseconds: 50))
-                  .fadeIn()
-                  .slideY(begin: 0.2, end: 0),
+                ]),
               ),
             ),
 

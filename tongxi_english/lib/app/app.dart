@@ -28,6 +28,29 @@ class TongxiEnglishApp extends ConsumerWidget {
         Locale('zh', 'CN'),
         Locale('en', 'US'),
       ],
+      builder: (context, child) {
+        // Catch rendering errors
+        ErrorWidget.builder = (FlutterErrorDetails details) {
+          return Scaffold(
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    Text('渲染错误', style: Theme.of(context).textTheme.headlineMedium),
+                    const SizedBox(height: 8),
+                    Text(details.exceptionAsString(), style: const TextStyle(fontSize: 12)),
+                  ],
+                ),
+              ),
+            ),
+          );
+        };
+        return child ?? const SizedBox();
+      },
     );
   }
 }

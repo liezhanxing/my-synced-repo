@@ -135,8 +135,16 @@ class AppSizes {
   /// Extra large avatar (96px)
   static const double avatarXl = 96.0;
   
+  // ==================== Screen Padding ====================
+
+  /// Standard screen padding (16px)
+  static const double screenPadding = 16.0;
+
+  /// Large screen padding (24px)
+  static const double screenPaddingLg = 24.0;
+
   // ==================== Spacing ====================
-  
+
   /// Extra small spacing (4px)
   static const double spaceXs = 4.0;
   

@@ -75,19 +75,19 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 // Title
                 Text(
                   '创建账号',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryPurple,
                   ),
                 )
                     .animate()
-                    .fadeIn(duration: const Duration(milliseconds: 500))
+                    .fadeIn(duration: Duration(milliseconds: 500))
                     .slideY(begin: -0.2, end: 0),
-                
-                const SizedBox(height: 8),
-                
-                const Text(
+
+                SizedBox(height: 8),
+
+                Text(
                   '加入童希英语，开始你的学习之旅',
                   style: TextStyle(
                     fontSize: 14,
@@ -95,19 +95,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                 )
                     .animate()
-                    .fadeIn(delay: const Duration(milliseconds: 100), duration: const Duration(milliseconds: 500)),
-                
-                const SizedBox(height: AppSizes.paddingLg),
-                
+                    .fadeIn(delay: Duration(milliseconds: 100), duration: Duration(milliseconds: 500)),
+
+                SizedBox(height: AppSizes.paddingLg),
+
                 // Mascot
-                const MascotWidget(
+                MascotWidget(
                   expression: MascotExpression.excited,
                   size: 100,
                   speechText: '欢迎加入！一起学习吧！',
-                )
-                    .animate()
-                    .fadeIn(delay: const Duration(milliseconds: 200), duration: const Duration(milliseconds: 500))
-                    .scale(begin: const Offset(0.8, 0.8)),
+                ),
                 
                 const SizedBox(height: AppSizes.paddingLg),
                 

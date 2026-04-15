@@ -145,7 +145,7 @@ class _PhrasePracticeScreenState extends ConsumerState<PhrasePracticeScreen> {
 
   // Fill in the blank exercise
   Widget _buildFillInBlankExercise(PhraseModel phrase, PracticeSessionState state) {
-    final options = ref.read(practiceSessionControllerProvider.notifier).getFillInBlankOptions();
+    final options = ref.read(practiceSessionControllerProvider.notifier).getFillInBlankOptionsSync();
     
     // Generate a sentence with blank
     final example = phrase.examples.first;

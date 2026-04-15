@@ -277,29 +277,49 @@ class PracticeSessionController extends StateNotifier<PracticeSessionState> {
   }
 
   /// Generate fill-in-blank options for current phrase
-  List<String> getFillInBlankOptions() {
+  Future<List<String>> getFillInBlankOptions() async {
     final current = currentPhrase;
     if (current == null) return [];
 
     // Get the main word/phrase to blank out
     final phrase = current.phrase;
-    
+
     // Get distractors from other phrases
-    final allPhrases = _repository.getAllPhrases();
+    final allPhrases = await _repository.getAllPhrases();
     final distractors = allPhrases
         .where((p) => p.id != current.id)
         .take(3)
         .map((p) => p.phrase)
         .toList();
-    
+
+    final options = [phrase, ...distractors];
+    options.shuffle();
+    return options;
+  }
+
+  /// Generate fill-in-blank options synchronously (for UI)
+  List<String> getFillInBlankOptionsSync() {
+    final current = currentPhrase;
+    if (current == null) return [];
+
+    // Get the main word/phrase to blank out
+    final phrase = current.phrase;
+
+    // Use current practice phrases as distractors
+    final distractors = state.practicePhrases
+        .where((p) => p.id != current.id)
+        .take(3)
+        .map((p) => p.phrase)
+        .toList();
+
     final options = [phrase, ...distractors];
     options.shuffle();
     return options;
   }
 
   /// Generate matching pairs for match exercise
-  Map<String, String> getMatchingPairs(int count) {
-    final phrases = _repository.getRandomPhrases(count);
+  Future<Map<String, String>> getMatchingPairs(int count) async {
+    final phrases = await _repository.getRandomPhrases(count);
     return {for (var p in phrases) p.phrase: p.translation};
   }
 }

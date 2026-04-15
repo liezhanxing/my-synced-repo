@@ -81,18 +81,8 @@ class AuthController extends StateNotifier<AuthState> {
 
   /// Initialize and check auth state
   void _init() {
-    _authRepository.authStateChanges.listen((firebaseUser) async {
-      if (firebaseUser != null) {
-        try {
-          final userData = await _authRepository.getUserData(firebaseUser.uid);
-          state = AuthState.authenticated(userData);
-        } catch (e) {
-          state = AuthState.unauthenticated();
-        }
-      } else {
-        state = AuthState.unauthenticated();
-      }
-    });
+    // Web Demo: Start as unauthenticated
+    state = AuthState.unauthenticated();
   }
 
   /// Sign in with email and password

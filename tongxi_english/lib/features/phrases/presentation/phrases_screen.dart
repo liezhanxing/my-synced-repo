@@ -8,6 +8,7 @@ import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/constants/module_colors.dart';
 import '../../../core/widgets/anime_button.dart';
+import '../../../core/widgets/anime_card.dart';
 import '../../../core/widgets/mascot_widget.dart';
 import 'phrase_list_screen.dart';
 import 'phrase_practice_screen.dart';

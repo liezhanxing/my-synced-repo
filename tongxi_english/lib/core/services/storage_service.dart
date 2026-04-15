@@ -315,4 +315,44 @@ class StorageService {
     await _progressBox.compact();
     await _settingsBox.compact();
   }
+
+  // ==================== Generic Methods for Repository Pattern ====================
+
+  /// Get a Map value from storage
+  Future<Map<String, dynamic>?> getMap(String key) async {
+    final value = await _progressBox.get(key);
+    if (value is Map) {
+      return Map<String, dynamic>.from(value);
+    }
+    return null;
+  }
+
+  /// Set a Map value to storage
+  Future<void> setMap(String key, Map<String, dynamic> value) async {
+    await _progressBox.put(key, value);
+  }
+
+  /// Get a List<String> value from storage
+  Future<List<String>?> getStringList(String key) async {
+    final value = await _progressBox.get(key);
+    if (value is List) {
+      return value.cast<String>();
+    }
+    return null;
+  }
+
+  /// Set a List<String> value to storage
+  Future<void> setStringList(String key, List<String> value) async {
+    await _progressBox.put(key, value);
+  }
+
+  /// Get all keys from storage
+  Future<List<String>> getKeys() async {
+    return _progressBox.keys.cast<String>().toList();
+  }
+
+  /// Remove a key from storage
+  Future<void> remove(String key) async {
+    await _progressBox.delete(key);
+  }
 }

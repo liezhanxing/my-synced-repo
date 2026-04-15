@@ -50,27 +50,9 @@ final navigationIndexProvider = StateProvider<int>((ref) => 0);
 
 /// GoRouter provider with all route configurations
 final routerProvider = Provider<GoRouter>((ref) {
-  final isAuthenticated = ref.watch(authStatusProvider);
-  
   return GoRouter(
     initialLocation: RouteNames.home,
     debugLogDiagnostics: true,
-    redirect: (context, state) {
-      final isLoggingIn = state.matchedLocation == RouteNames.login ||
-                         state.matchedLocation == RouteNames.register;
-      
-      // If not authenticated and not on auth pages, redirect to login
-      if (!isAuthenticated && !isLoggingIn) {
-        return RouteNames.login;
-      }
-      
-      // If authenticated and on auth pages, redirect to home
-      if (isAuthenticated && isLoggingIn) {
-        return RouteNames.home;
-      }
-      
-      return null;
-    },
     routes: [
       // Auth routes (outside shell)
       GoRoute(
@@ -193,12 +175,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const TranslationScreen(),
       ),
       
-      // Settings route (standalone)
-      GoRoute(
-        path: RouteNames.settings,
-        name: 'settings_standalone',
-        builder: (context, state) => const SettingsScreen(),
-      ),
+      // Settings route (standalone) - removed to avoid conflict with shell nested route
     ],
   );
 });

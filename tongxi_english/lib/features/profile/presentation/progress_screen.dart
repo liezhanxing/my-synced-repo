@@ -7,6 +7,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/widgets/anime_card.dart';
 import '../../../core/widgets/mascot_widget.dart';
+import '../../../models/user_progress_model.dart';
 import 'profile_controller.dart';
 
 /// Progress screen
@@ -340,13 +341,13 @@ class ProgressScreen extends ConsumerWidget {
                 barTouchData: BarTouchData(
                   enabled: true,
                   touchTooltipData: BarTouchTooltipData(
-                    tooltipBgColor: AppColors.textPrimary,
                     getTooltipItem: (group, groupIndex, rod, rodIndex) {
                       return BarTooltipItem(
                         '${rod.toY.toInt()}分钟',
-                        const TextStyle(
+                        TextStyle(
                           color: Colors.white,
                           fontSize: 12,
+                          backgroundColor: AppColors.textPrimary,
                         ),
                       );
                     },

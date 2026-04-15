@@ -43,7 +43,7 @@ class VocabularyScreen extends ConsumerWidget {
       body: state.isLoading
           ? const Center(child: CircularProgressIndicator())
           : state.error != null
-              ? _buildErrorState(state.error!)
+              ? _buildErrorState(state.error!, ref)
               : SafeArea(
                   child: Column(
                     children: [
@@ -118,9 +118,13 @@ class VocabularyScreen extends ConsumerWidget {
   ) {
     switch (state.tab) {
       case VocabularyTab.list:
-        final grouped = state.selectedUnit == '全部'
-            ? Map<String, List<WordModel>>.from(state.groupedWords)..remove('全部')
-            : {state.selectedUnit: state.filteredWords};
+        final Map<String, List<WordModel>> grouped;
+        if (state.selectedUnit == '全部') {
+          grouped = Map<String, List<WordModel>>.from(state.groupedWords);
+          grouped.remove('全部');
+        } else {
+          grouped = {state.selectedUnit: state.filteredWords};
+        }
         return WordListScreen(
           groupedWords: grouped,
           onPlay: _playWord,
@@ -199,7 +203,7 @@ class VocabularyScreen extends ConsumerWidget {
     await tts.speakWord(word.word);
   }
 
-  Widget _buildErrorState(String error) {
+  Widget _buildErrorState(String error, WidgetRef ref) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -72,25 +72,27 @@ class AnimatedProgressBar extends StatelessWidget {
               // Animated fill
               LayoutBuilder(
                 builder: (context, constraints) {
-                  return Container(
-                    width: constraints.maxWidth * clampedProgress,
-                    decoration: BoxDecoration(
-                      gradient: barGradient,
-                      borderRadius: BorderRadius.circular(borderRadius),
-                      boxShadow: [
-                        BoxShadow(
-                          color: barGradient.colors.first.withOpacity(0.4),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
+                  return TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.0, end: constraints.maxWidth * clampedProgress),
+                    duration: animationDuration,
+                    curve: Curves.easeOutCubic,
+                    builder: (context, width, child) {
+                      return Container(
+                        width: width,
+                        decoration: BoxDecoration(
+                          gradient: barGradient,
+                          borderRadius: BorderRadius.circular(borderRadius),
+                          boxShadow: [
+                            BoxShadow(
+                              color: barGradient.colors.first.withOpacity(0.4),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  )
-                      .animate()
-                      .width(
-                        duration: animationDuration,
-                        curve: Curves.easeOutCubic,
                       );
+                    },
+                  );
                 },
               ),
               

@@ -75,7 +75,7 @@ class ProfileScreen extends ConsumerWidget {
                         ),
                         IconButton(
                           icon: const Icon(Icons.settings_outlined),
-                          onPressed: () => context.goToSettings(),
+                          onPressed: () => context.push('/settings'),
                         ),
                       ],
                     ),
@@ -421,12 +421,7 @@ class ProfileScreen extends ConsumerWidget {
 
   Widget _buildStreakCard(int streak, int longestStreak) {
     return AnimeCard(
-      gradient: LinearGradient(
-        colors: [
-          AppColors.accentOrange.withOpacity(0.1),
-          AppColors.secondaryPink.withOpacity(0.1),
-        ],
-      ),
+      backgroundColor: AppColors.accentOrange.withOpacity(0.1),
       child: Row(
         children: [
           Container(

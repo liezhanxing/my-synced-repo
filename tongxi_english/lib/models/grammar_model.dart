@@ -7,9 +7,12 @@ class GrammarModel extends Equatable {
   /// Unique ID
   final String id;
   
-  /// Grammar rule title
+  /// Grammar rule title (English)
   final String title;
-  
+
+  /// Grammar rule title (Chinese)
+  final String titleCn;
+
   /// Rule explanation
   final String explanation;
   
@@ -34,6 +37,7 @@ class GrammarModel extends Equatable {
   const GrammarModel({
     required this.id,
     required this.title,
+    required this.titleCn,
     required this.explanation,
     required this.keyPoints,
     required this.examples,
@@ -47,6 +51,7 @@ class GrammarModel extends Equatable {
     return GrammarModel(
       id: json['id'] as String,
       title: json['title'] as String,
+      titleCn: json['title_cn'] as String? ?? json['title'] as String,
       explanation: json['explanation'] as String,
       keyPoints: List<String>.from(json['key_points'] ?? []),
       examples: (json['examples'] as List)
@@ -66,6 +71,7 @@ class GrammarModel extends Equatable {
     return {
       'id': id,
       'title': title,
+      'title_cn': titleCn,
       'explanation': explanation,
       'key_points': keyPoints,
       'examples': examples.map((e) => e.toJson()).toList(),
@@ -80,6 +86,7 @@ class GrammarModel extends Equatable {
   List<Object?> get props => [
         id,
         title,
+        titleCn,
         explanation,
         keyPoints,
         examples,

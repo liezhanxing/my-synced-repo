@@ -32,14 +32,16 @@ class TranslationExerciseState {
   final double? score;
   final bool isLoading;
   final String? error;
+  final DateTime? sessionStart;
 
-  const TranslationExerciseState({
+  TranslationExerciseState({
     this.currentExercise,
     this.userAnswer = '',
     this.isSubmitted = false,
     this.score,
     this.isLoading = false,
     this.error,
+    this.sessionStart,
   });
 
   TranslationExerciseState copyWith({
@@ -49,6 +51,7 @@ class TranslationExerciseState {
     double? score,
     bool? isLoading,
     String? error,
+    DateTime? sessionStart,
   }) {
     return TranslationExerciseState(
       currentExercise: currentExercise ?? this.currentExercise,
@@ -57,6 +60,7 @@ class TranslationExerciseState {
       score: score ?? this.score,
       isLoading: isLoading ?? this.isLoading,
       error: error,
+      sessionStart: sessionStart ?? this.sessionStart,
     );
   }
 }
@@ -105,19 +109,16 @@ class TranslationState {
   final bool isLoading;
   final String? error;
 
-  const TranslationState({
+  TranslationState({
     this.exercises = const [],
     this.filter = const TranslationFilter(),
-    this.exerciseState = const TranslationExerciseState(
-      sessionStart: DateTime.now(),
-    ),
-    this.sessionStats = const TranslationSessionStats(
-      sessionStart: DateTime.now(),
-    ),
+    TranslationExerciseState? exerciseState,
+    TranslationSessionStats? sessionStats,
     this.dailyChallenge,
     this.isLoading = false,
     this.error,
-  });
+  })  : exerciseState = exerciseState ?? TranslationExerciseState(sessionStart: DateTime.now()),
+        sessionStats = sessionStats ?? TranslationSessionStats(sessionStart: DateTime.now());
 
   TranslationState copyWith({
     List<TranslationExercise>? exercises,
@@ -170,7 +171,7 @@ final translationControllerProvider =
 class TranslationController extends StateNotifier<TranslationState> {
   final TranslationRepository _repository;
 
-  TranslationController(this._repository) : super(const TranslationState()) {
+  TranslationController(this._repository) : super(TranslationState()) {
     _init();
   }
 
@@ -336,9 +337,9 @@ class TranslationController extends StateNotifier<TranslationState> {
           altMatches++;
         }
       }
-      final altScore = altElements.isEmpty ? 0 : altMatches / altElements.length;
+      final altScore = altElements.isEmpty ? 0.0 : altMatches / altElements.length;
       if (altScore > bestAlternativeScore) {
-        bestAlternativeScore = altScore;
+        bestAlternativeScore = altScore.toDouble();
       }
     }
 
