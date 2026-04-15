@@ -1,0 +1,85 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+pubspec.lock
+
+# Android
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+**/android/key.properties
+**/android/app/google-services.json
+android/local.properties
+android/.idea/
+android/*.iml
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.generated/
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/project.xcworkspace/
+**/ios/GoogleService-Info.plist
+ios/Podfile.lock
+
+# macOS
+macos/Pods/
+macos/.symlinks/
+macos/Flutter/ephemeral/
+
+# Web
+web/.dart_tool/
+
+# Windows
+windows/flutter/ephemeral/
+windows/.dart_tool/
+
+# Linux
+linux/flutter/ephemeral/
+linux/.dart_tool/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Firebase
+firebase_app_id_file.json
+firebase_options.dart
+lib/firebase_options.dart
+
+# Local configuration
+.env
+.env.local
+.env.development
+.env.production
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Test coverage
+coverage/
+.test_coverage.dart
+
+# Miscellaneous
+*.log
+*.tmp
+*.temp
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
